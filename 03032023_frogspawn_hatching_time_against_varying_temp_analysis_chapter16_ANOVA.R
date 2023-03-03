@@ -14,3 +14,17 @@ library(here)
 frogspawn <- read.csv(here("data","frogs_messy_data.csv"))
 #__________________________----
 #CLEAN DATA ----
+frogspawn <- janitor::clean_names(frogspawn)
+colnames(frogspawn)
+#rename column names
+frogspawn <- rename(frogspawn,
+                    "id"="frogspawn_sample_id",
+                    "temp_13"="temperature13",
+                    "temp_18"="temperature18",
+                    "temp_25"="temperature25")
+# Get a sum of how many observations are missing in our dataframe
+frogspawn %>% 
+  is.na() %>% 
+  sum()
+summary(frogspawn)
+
