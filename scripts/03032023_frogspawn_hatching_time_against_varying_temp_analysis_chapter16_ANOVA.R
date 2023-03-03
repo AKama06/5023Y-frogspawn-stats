@@ -87,18 +87,18 @@ frogspawn %>%
 #and reduced by an average of 10.5 days [9.37-10.8 95%CI] hatchlings in containers at 25oC. 
 
 
-#frogspawn_figure <- emmeans::emmeans(frogspawn_ls, specs = ~ temperature)
+frogspawn_means <- emmeans::emmeans(frogspawn_ls, specs = ~ temperature)
 
-#frogspawn_figure
+frogspawn_means
 
-#frogspawn_figure %>% 
-#  as_tibble() %>% 
-#  ggplot(aes(x=temperature, 
-#             y=emmean))+
-#  geom_pointrange(aes(
-#    ymin=lower.CL, 
-#    ymax=upper.CL))+
-#  geom_point()+
+frogspawn_means %>% 
+  as_tibble() %>% 
+  ggplot(aes(x=temperature, 
+             y=emmean))+
+  geom_pointrange(aes(
+    ymin=lower.CL, 
+    ymax=upper.CL))+
+  geom_jitter(data = frogspawn, aes(x= temperature, y= days), width=0.2, alpha= 0.2)+
 #  geom_smooth(method = "lm")+
 #  labs(y="Number of days to spawn hatchling",
 #       x="Temperature (°C)")
